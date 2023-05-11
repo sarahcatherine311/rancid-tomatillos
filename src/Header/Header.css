@@ -1,0 +1,19 @@
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.header-bottom {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.search-bar {
+  background-color: white;
+}

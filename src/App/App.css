@@ -1,4 +1,11 @@
-.leave-button {
-  height: 100px;
-  width: 100px;
+* {
+  background-color: black;
+  color: white;
+}
+
+button {
+  background-color: black;
+  color: white;
+  height: 50px;
+  width: 200px;
 }

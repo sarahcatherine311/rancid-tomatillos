@@ -13,36 +13,41 @@ class App extends Component {
       specificMovie: null
     };
   }
+  
   displaySingleMovie = (id) => {
-    const filteredMovie = this.state.allMovies.movies.filter(movie => movie.id === id)
+    const filteredMovie = this.state.allMovies.movies.filter(movie => movie.id === id);
     this.setState({
       allMovies: null,
       specificMovie: filteredMovie
-    })
-  }
+    });
+  };
+  
   goBackToHome = () => {
     this.setState({
       allMovies: movieData,
       specificMovie: null
-    })
-  }
+    });
+  };
+  
   render() {
     if (!this.state.specificMovie) {
-      return(
+      return (
         <div>
-          {/* <Header /> */}
+          <Header />
           <Movies movies={this.state.allMovies.movies} displaySingleMovie={this.displaySingleMovie}/>
         </div>
-      )
+      );
     } else {
       return (
         <div> 
-          <button className='leave-button' onClick={this.goBackToHome}></button>
           <Movie movie={this.state.specificMovie} />
+          <footer>
+            <button onClick={this.goBackToHome}>Return to Main Page</button>
+          </footer>
         </div>
-      )
-    }
-  }
-}
+      );
+    };
+  };
+};
 
 export default App;

@@ -1,8 +1,16 @@
-.single-movie-cont {
-    height: 100%;
-    width: 100%;
+.movie-details {
+  display: flex;
+  flex-direction: column;
 }
-.single-movie-img {
-    height: 200px;
-    width: 200px;
+
+.backdrop-img {
+  width: 100%;
+}
+
+.movie-poster {
+  width: 30%;
+}
+
+.main {
+  display: flex;
 }
