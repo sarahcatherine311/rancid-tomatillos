@@ -1,20 +1,17 @@
-import react from "react"
-import "./Movies.css"
+import react from "react";
+import "./Movies.css";
 
 const Movies = ({movies, displaySingleMovie}) => {
-    const moviePoster = movies.map(movie => {
-        return (
-           <img key={movie.id} src={movie.poster_path} onClick={() => displaySingleMovie(movie.id)} height="100px"/>
-        )
-    })
+  const moviePoster = movies.map(movie => {
     return (
-        <div className="movie-posters">
-            {moviePoster}
-        </div>
-    )
-    
-    
-    
-}
+      <img className="movie-posters" key={movie.id} src={movie.poster_path} onClick={() => displaySingleMovie(movie.id)}/>
+    );
+  });
+  return (
+    <div className="movie-posters-section">
+      {moviePoster}
+    </div>
+  );
+};
 
-export default Movies
+export default Movies;
