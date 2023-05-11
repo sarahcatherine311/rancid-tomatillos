@@ -13,3 +13,7 @@ header {
   display: flex;
   justify-content: space-evenly;
 }
+
+.search-bar {
+  background-color: white;
+}

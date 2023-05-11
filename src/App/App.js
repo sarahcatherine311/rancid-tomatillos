@@ -40,8 +40,10 @@ class App extends Component {
     } else {
       return (
         <div> 
-          <button className='leave-button' onClick={this.goBackToHome}>Return to Movies</button>
           <Movie movie={this.state.specificMovie} />
+          <footer>
+            <button onClick={this.goBackToHome}>Return to Main Page</button>
+          </footer>
         </div>
       );
     };
