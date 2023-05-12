@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./Header.css";
 
-const Header = () => {
+const Header = (props) => {
+  // console.log(props, "movie props")
   return (
     <header>
       <div className="header-top">
@@ -12,7 +13,7 @@ const Header = () => {
         <input className="search-bar" type="text" placeholder="Search for a movie"/>
         <div>
           <label for="ratings">Sort by Rating:  </label>
-          <select id="ratings" name="ratings">
+          <select onChange={(e) => props.sortMovies()} id="ratings" name="ratings">
             <option value="highest">High to Low</option>
             <option value="lowest">Low to High</option>
           </select>

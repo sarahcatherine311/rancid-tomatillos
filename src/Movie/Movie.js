@@ -3,15 +3,29 @@ import "./Movie.css";
 
 
 const Movie = (props) => {
+  const budget = props.movie.movie.budget;
+  const revenue = props.movie.movie.revenue;
+  let dollarUSLocale = Intl.NumberFormat('en-US');
+  
   return (
     <div>
-      <img className="backdrop-img"src={props.movie[0].backdrop_path} />
+      <img className="backdrop-img"src={props.movie.movie.backdrop_path} />
       <div className="main">
-        <img className="movie-poster" src={props.movie[0].poster_path}/>
+        <img className="movie-poster" src={props.movie.movie.poster_path}/>
         <div className="movie-details">
-          <h2>{props.movie[0].title}</h2>
-          <p>Release date: {props.movie[0].release_date}</p>
-          <p>Average rating: {props.movie[0].average_rating}</p>
+          <div>
+            <h2>{props.movie.movie.title}</h2>
+            <h3>{props.movie.movie.tagline}</h3>
+          </div>
+          <p>Genres: {props.movie.movie.genres.join(', ')}</p>
+          <p>Release date: {props.movie.movie.release_date}</p>
+          <p>Average rating: {props.movie.movie.average_rating}</p>
+          <p>Runtime: {props.movie.movie.runtime} minutes</p>
+          <p>Overview: {props.movie.movie.overview}</p>
+          <div>
+            <p>Budget: ${dollarUSLocale.format(budget)}</p>
+            <p>Revenue: ${dollarUSLocale.format(revenue)}</p>
+          </div>
         </div>
       </div>
     </div>
