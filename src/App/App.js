@@ -14,7 +14,7 @@ class App extends Component {
     };
   }
   
-  fetchCall = () => {
+  moviesFetchCall = () => {
     fetch("https://rancid-tomatillos.herokuapp.com/api/v2/movies")
       .then(response => response.json())
       .then(data => 
@@ -26,20 +26,30 @@ class App extends Component {
       .catch(error => this.setState({ error, isLoading: false}))
   }
 
+  individualMovieFetchCall = (id) => {
+    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}/`)
+      .then(response => response.json())
+      .then(data => 
+        this.setState({
+          allMovies: null,
+          specificMovie: data,
+          isLoading: false
+        }))
+      .catch(error => this.setState({ error, isLoading: false}))
+  }
+
   componentDidMount = () => {
-    this.fetchCall()
+    this.moviesFetchCall()
   }
 
   displaySingleMovie = (id) => {
     const filteredMovie = this.state.allMovies.movies.filter(movie => movie.id === id);
-    this.setState({
-      allMovies: null,
-      specificMovie: filteredMovie
-    });
+    console.log(filteredMovie)
+    this.individualMovieFetchCall(filteredMovie[0].id)
   };
   
   goBackToHome = () => {
-    this.fetchCall()
+    this.moviesFetchCall()
   };
   
   render() {
