@@ -44,13 +44,31 @@ class App extends Component {
 
   displaySingleMovie = (id) => {
     const filteredMovie = this.state.allMovies.movies.filter(movie => movie.id === id);
-    console.log(filteredMovie)
     this.individualMovieFetchCall(filteredMovie[0].id)
   };
   
   goBackToHome = () => {
     this.moviesFetchCall()
   };
+
+  sortMovies = () => {
+    const sortSelector = document.getElementById("ratings")
+    const sortInputValue = sortSelector.value
+    const data = this.state.allMovies
+    if (sortInputValue === "highest") {
+      this.setState({
+        allMovies: { movies: data.movies.sort((a,b) => b.average_rating - a.average_rating )},
+        specificMovie: null,
+        isLoading: false
+      })
+    } else {
+      this.setState({
+        allMovies: { movies: data.movies.sort((a,b) => a.average_rating - b.average_rating )},
+        specificMovie: null,
+        isLoading: false
+      })
+    }
+  }
   
   render() {
     if (this.state.isLoading) {
@@ -60,9 +78,9 @@ class App extends Component {
       return <div>Error: {this.state.error.message}</div>
     }
      else if (!this.state.specificMovie) {
-      return (
+       return (
         <div>
-          <Header />
+          <Header sortMovies={this.sortMovies}/>
           <Movies movies={this.state.allMovies} displaySingleMovie={this.displaySingleMovie}/>
         </div>
       );
