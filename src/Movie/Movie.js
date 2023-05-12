@@ -3,7 +3,6 @@ import "./Movie.css";
 
 
 const Movie = (props) => {
-  console.log(props.movie)
   return (
     <div>
       <img className="backdrop-img"src={props.movie[0].backdrop_path} />
