@@ -70,6 +70,27 @@ class App extends Component {
     }
   }
   
+  searchForTitle = () => {
+    const data = this.state.allMovies
+    const searchBar = document.getElementById('searchBar')
+    console.log(searchBar.value, 'yooooooo')
+    const characters = searchBar.value.toUpperCase()
+    const includedMovies = this.state.allMovies.movies.filter((movie) => movie.title.toUpperCase().includes(characters))
+    console.log(includedMovies, 'rahhhh')
+    if (searchBar.value) {
+      this.setState({
+        allMovies: {movies: includedMovies},
+        specificMovie: null,
+        isLoading: false
+      })
+    } else {
+      this.setState({
+        allMovies: data,
+        specificMovie: null,
+        isLoading: false
+      })
+    } 
+  }
   render() {
     if (this.state.isLoading) {
       return <div>Loading.....</div>
@@ -80,7 +101,7 @@ class App extends Component {
      else if (!this.state.specificMovie) {
        return (
         <div>
-          <Header sortMovies={this.sortMovies}/>
+          <Header searchForTitle={this.searchForTitle} sortMovies={this.sortMovies}/>
           <Movies movies={this.state.allMovies} displaySingleMovie={this.displaySingleMovie}/>
         </div>
       );
