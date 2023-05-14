@@ -10,6 +10,7 @@ class App extends Component {
     this.state = {
       specificMovie: null,
       isLoading: true,
+      search: "",
       error: null
     };
   }
@@ -20,6 +21,7 @@ class App extends Component {
       .then(data => 
         this.setState({
           allMovies: data,
+          includedMovies: data,
           specificMovie: null,
           isLoading: false
         }))
@@ -73,16 +75,17 @@ class App extends Component {
   searchForTitle = () => {
     const data = this.state.allMovies
     const searchBar = document.getElementById('searchBar')
-    console.log(searchBar.value, 'yooooooo')
-    const characters = searchBar.value.toUpperCase()
-    const includedMovies = this.state.allMovies.movies.filter((movie) => movie.title.toUpperCase().includes(characters))
-    console.log(includedMovies, 'rahhhh')
-    if (searchBar.value) {
+    this.setState({search: searchBar.value.toUpperCase() })
+    let includedMovies = this.state.allMovies.movies.filter((movie) => movie.title.toUpperCase().includes(this.state.search))
+
+    if (this.state.search !== "") {
+      console.log(this.state.search)
       this.setState({
-        allMovies: {movies: includedMovies},
+        includedMovies: {movies: includedMovies},
         specificMovie: null,
         isLoading: false
       })
+
     } else {
       this.setState({
         allMovies: data,
@@ -91,6 +94,7 @@ class App extends Component {
       })
     } 
   }
+  
   render() {
     if (this.state.isLoading) {
       return <div>Loading.....</div>
@@ -98,13 +102,20 @@ class App extends Component {
     else if (this.state.error) {
       return <div>Error: {this.state.error.message}</div>
     }
-     else if (!this.state.specificMovie) {
-       return (
-        <div>
-          <Header searchForTitle={this.searchForTitle} sortMovies={this.sortMovies}/>
-          <Movies movies={this.state.allMovies} displaySingleMovie={this.displaySingleMovie}/>
-        </div>
-      );
+     else if (this.state.search !== "") {
+      return (
+       <div>
+         <Header searchForTitle={this.searchForTitle} sortMovies={this.sortMovies}/>
+         <Movies movies={this.state.includedMovies} displaySingleMovie={this.displaySingleMovie}/>
+       </div>
+     )
+    } else if (!this.state.specificMovie) {
+      return (
+       <div>
+         <Header searchForTitle={this.searchForTitle} sortMovies={this.sortMovies}/>
+         <Movies movies={this.state.allMovies} displaySingleMovie={this.displaySingleMovie}/>
+       </div>
+     );
     } else {
       return (
         <div> 
