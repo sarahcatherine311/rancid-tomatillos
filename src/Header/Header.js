@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./Header.css";
 
 const Header = (props) => {
-  // console.log(props, "movie props")
   return (
     <header>
       <div className="header-top">
