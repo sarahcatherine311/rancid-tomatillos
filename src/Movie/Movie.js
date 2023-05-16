@@ -29,9 +29,11 @@ const Movie = (props) => {
             <p>Budget: ${dollarUSLocale.format(budget)}</p>
             <p>Revenue: ${dollarUSLocale.format(revenue)}</p>
           </div>
+          {props.video && props.video.key && (
           <div className="videos">
             <Videos embedId={props.video.key} />
           </div>
+          )}
         </section>
       </div>
     </div>

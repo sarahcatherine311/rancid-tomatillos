@@ -4,6 +4,7 @@ import Movies from '../Movies/Movies';
 import Movie from '../Movie/Movie';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import { Route, NavLink } from 'react-router-dom'
 
 class App extends Component {
   constructor() {
@@ -119,24 +120,50 @@ class App extends Component {
     }
      else if (this.state.search !== "") {
       return (
-       <div>
-         <Header searchForTitle={this.searchForTitle} sortMovies={this.sortMovies}/>
-         <Movies movies={this.state.includedMovies} displaySingleMovie={this.displaySingleMovie}/>
-       </div>
-     );
+        <Route
+          exact
+          path='/'
+          render={() => (
+            <div>
+              <Header searchForTitle={this.searchForTitle} sortMovies={this.sortMovies}/>
+              <Movies movies={this.state.includedMovies} displaySingleMovie={this.displaySingleMovie}/>
+            </div>
+          )
+          }
+        />
+      );
     } else if (!this.state.specificMovie) {
       return (
-       <div>
-         <Header searchForTitle={this.searchForTitle} sortMovies={this.sortMovies}/>
-         <Movies movies={this.state.allMovies} displaySingleMovie={this.displaySingleMovie}/>
-       </div>
+        <Route 
+          exact 
+          path='/' 
+          render={() => (
+            <div>
+              <Header searchForTitle={this.searchForTitle} sortMovies={this.sortMovies}/>
+              <Movies movies={this.state.allMovies} displaySingleMovie={this.displaySingleMovie}/>
+            </div>
+            )
+          }
+        /> 
      );
     } else {
       return (
-        <div> 
-          <Movie movie={this.state.specificMovie} video={this.state.trailer} />
-          <Footer goBackToHome={this.goBackToHome}/>
-        </div>
+        <Route 
+          path='/:id'
+          render={({ match }) => {
+            console.log(match, 'yoooooooooo')
+            const theId = parseInt(match.params.id)
+            console.log('match', match)
+            console.log(theId, 'id')
+            return (
+              <div> 
+                <Movie id={theId} movie={this.state.specificMovie} video={this.state.trailer} />
+                <Footer goBackToHome={this.goBackToHome}/>
+              </div>
+            )
+          }
+          }
+        />
       );
     };
   };
