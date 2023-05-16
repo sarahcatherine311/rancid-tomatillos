@@ -3,21 +3,29 @@
   flex-direction: column;
   font-size: x-large;
   font-weight: 500;
+  width: 60%;
+}
+
+.backdrop-img-section {
+  height: 500px;
+  margin-bottom: 20px;
+  -webkit-mask-image: linear-gradient(#000, rgba(0,0,0,0));
+  mask-image: linear-gradient(#000, rgba(0,0,0,0));
 }
 
 .backdrop-img {
   width: 100%;
-  margin-bottom: 20px;
 }
 
 .movie-poster {
-  width: 35%;
+  width: 40%;
+  height: fit-content;
   margin-right: 20px;
-  margin-bottom: 20px;
 }
 
 .main {
   display: flex;
+  margin-bottom: 20px;
 }
 
 p {
