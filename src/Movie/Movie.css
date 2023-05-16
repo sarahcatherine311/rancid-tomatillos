@@ -1,6 +1,16 @@
 .movie-details {
   display: flex;
   flex-direction: column;
+  font-size: x-large;
+  font-weight: 500;
+  width: 60%;
+}
+
+.backdrop-img-section {
+  height: 500px;
+  margin-bottom: 20px;
+  -webkit-mask-image: linear-gradient(#000, rgba(0,0,0,0));
+  mask-image: linear-gradient(#000, rgba(0,0,0,0));
 }
 
 .backdrop-img {
@@ -8,9 +18,16 @@
 }
 
 .movie-poster {
-  width: 30%;
+  width: 40%;
+  height: fit-content;
+  margin-right: 20px;
 }
 
 .main {
   display: flex;
+  margin-bottom: 20px;
+}
+
+p {
+  margin: 7px;
 }
