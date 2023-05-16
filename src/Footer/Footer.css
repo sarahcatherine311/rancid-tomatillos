@@ -1,8 +1,13 @@
 footer {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 button {
   font-size: 20px;
+}
+
+.footer-logo {
+  height: 200px;
+  cursor: pointer;
 }

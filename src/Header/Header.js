@@ -5,7 +5,7 @@ const Header = (props) => {
   return (
     <header>
       <div className="header-top">
-        <img className="logo" src="https://i.ibb.co/TrMhMNx/rancid-tomatillos-logo.png" alt="Rancid Tomatillo Logo"/>
+        <img className="logo" src="https://i.ibb.co/8bGjmZw/Untitled-Artwork.png" alt="Rancid Tomatillo Logo"/>
       </div>
       <div className="header-bottom">
         <input onChange={(e) => props.searchForTitle()} className="search-bar" id="searchBar"type="text" placeholder="Search for a movie"/>
