@@ -41,6 +41,17 @@ class App extends Component {
       .catch(error => this.setState({ error, isLoading: false}))
   }
 
+  videoFetchCall = (id) => {
+    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}/videos`)
+      .then(response => response.json())
+      .then(data => 
+        this.setState({
+          trailer: data.videos.find(video => video.type === "Trailer"),
+          isLoading: false
+        }))
+      .catch(error => this.setState({ error, isLoading: false}))
+  }
+
   componentDidMount = () => {
     this.moviesFetchCall()
   }
@@ -48,6 +59,7 @@ class App extends Component {
   displaySingleMovie = (id) => {
     const filteredMovie = this.state.allMovies.movies.filter(movie => movie.id === id);
     this.individualMovieFetchCall(filteredMovie[0].id)
+    this.videoFetchCall(filteredMovie[0].id)
   };
   
   goBackToHome = () => {
@@ -80,7 +92,6 @@ class App extends Component {
     let includedMovies = this.state.allMovies.movies.filter((movie) => movie.title.toUpperCase().includes(this.state.search))
 
     if (this.state.search !== "") {
-      console.log(this.state.search)
       this.setState({
         includedMovies: {movies: includedMovies},
         specificMovie: null,
@@ -95,6 +106,11 @@ class App extends Component {
       })
     } 
   }
+
+  // displayVideo = (id) => {
+  //   this.videoFetchCall(id)
+  //   return this.state.videos.videos.find(video => video.type === "Trailer");
+  // };
   
   render() {
     if (this.state.isLoading) {
@@ -120,7 +136,7 @@ class App extends Component {
     } else {
       return (
         <div> 
-          <Movie movie={this.state.specificMovie} />
+          <Movie movie={this.state.specificMovie} video={this.state.trailer} />
           <Footer goBackToHome={this.goBackToHome}/>
         </div>
       );

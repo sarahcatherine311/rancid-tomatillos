@@ -7,7 +7,7 @@ const Movie = (props) => {
   const budget = props.movie.movie.budget;
   const revenue = props.movie.movie.revenue;
   let dollarUSLocale = Intl.NumberFormat('en-US');
-  
+
   return (
     <div>
       <div className="backdrop-img-section">
@@ -30,13 +30,12 @@ const Movie = (props) => {
             <p>Revenue: ${dollarUSLocale.format(revenue)}</p>
           </div>
           <div className="videos">
-            <Videos embedId="I9B6rwW35GQ" />
+            <Videos embedId={props.video.key} />
           </div>
         </section>
       </div>
     </div>
   );
 };
-// https://www.youtube.com/watch?v=I9B6rwW35GQ
-// https://www.youtube.com/embed/I9B6rwW35GQ
+
 export default Movie;
