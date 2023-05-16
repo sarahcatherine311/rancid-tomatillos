@@ -3,6 +3,7 @@ import './App.css';
 import Movies from '../Movies/Movies';
 import Movie from '../Movie/Movie';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 class App extends Component {
   constructor() {
@@ -108,7 +109,7 @@ class App extends Component {
          <Header searchForTitle={this.searchForTitle} sortMovies={this.sortMovies}/>
          <Movies movies={this.state.includedMovies} displaySingleMovie={this.displaySingleMovie}/>
        </div>
-     )
+     );
     } else if (!this.state.specificMovie) {
       return (
        <div>
@@ -120,9 +121,7 @@ class App extends Component {
       return (
         <div> 
           <Movie movie={this.state.specificMovie} />
-          <footer>
-            <button onClick={this.goBackToHome}>Return to Main Page</button>
-          </footer>
+          <Footer goBackToHome={this.goBackToHome}/>
         </div>
       );
     };

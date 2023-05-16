@@ -18,3 +18,20 @@ header {
   background-color: white;
   color: black
 }
+
+.logo {
+  height: 400px;
+  margin: 0px
+}
+
+.search-bar {
+  height: 30px;
+  width: 300px;
+  font-size: 20px;
+}
+
+.sort {
+  height: 35px;
+  width: 150px;
+  font-size: 20px;
+}
