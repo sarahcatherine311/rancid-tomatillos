@@ -61,8 +61,9 @@ class App extends Component {
   displaySingleMovie = (id) => {
     this.individualMovieFetchCall(id)
     this.videoFetchCall(id)
-    console.log(id)
-    console.log("this is working")
+    this.setState({
+      search: ''
+    })
   };
   
   goBackToHome = () => {
@@ -98,14 +99,12 @@ class App extends Component {
       this.setState({
         allMovies: data,
         includedMovies: {movies: includedMovies},
-        specificMovie: null,
         isLoading: false
       })
 
     } else {
       this.setState({
         allMovies: data,
-        specificMovie: null,
         isLoading: false
       })
     } 
@@ -146,15 +145,12 @@ class App extends Component {
           }
         /> 
      );
-    } else {
+    } else if(this.state.specificMovie !== null) {
       return (
         <Route 
           path='/:id'
           render={({ match }) => {
-            console.log(match, 'yoooooooooo')
             const theId = parseInt(match.params.id)
-            console.log('match', match)
-            console.log(theId, 'id')
             return (
               <div> 
                 <Movie id={theId} movie={this.state.specificMovie} video={this.state.trailer} />
