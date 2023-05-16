@@ -11,7 +11,9 @@ header {
 
 .header-bottom {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  padding-left: 150px;
+  padding-right: 150px;
 }
 
 .search-bar {
@@ -20,7 +22,7 @@ header {
 }
 
 .logo {
-  height: 400px;
+  height: 350px;
   margin: 0px
 }
 

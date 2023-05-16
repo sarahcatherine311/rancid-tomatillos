@@ -36,6 +36,7 @@ class App extends Component {
         this.setState({
           allMovies: null,
           specificMovie: data,
+          includedMovies: null,
           isLoading: false
         }))
       .catch(error => this.setState({ error, isLoading: false}))
@@ -57,9 +58,10 @@ class App extends Component {
   }
 
   displaySingleMovie = (id) => {
-    const filteredMovie = this.state.allMovies.movies.filter(movie => movie.id === id);
-    this.individualMovieFetchCall(filteredMovie[0].id)
-    this.videoFetchCall(filteredMovie[0].id)
+    this.individualMovieFetchCall(id)
+    this.videoFetchCall(id)
+    console.log(id)
+    console.log("this is working")
   };
   
   goBackToHome = () => {
@@ -93,6 +95,7 @@ class App extends Component {
 
     if (this.state.search !== "") {
       this.setState({
+        allMovies: data,
         includedMovies: {movies: includedMovies},
         specificMovie: null,
         isLoading: false
@@ -106,11 +109,6 @@ class App extends Component {
       })
     } 
   }
-
-  // displayVideo = (id) => {
-  //   this.videoFetchCall(id)
-  //   return this.state.videos.videos.find(video => video.type === "Trailer");
-  // };
   
   render() {
     if (this.state.isLoading) {

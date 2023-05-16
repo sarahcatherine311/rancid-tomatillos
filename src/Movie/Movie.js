@@ -22,7 +22,7 @@ const Movie = (props) => {
           </div>
           <p>Genres: {props.movie.movie.genres.join(', ')}</p>
           <p>Release date: {props.movie.movie.release_date}</p>
-          <p>Average rating: {props.movie.movie.average_rating}</p>
+          <p>Average rating: {props.movie.movie.average_rating} stars</p>
           <p>Runtime: {props.movie.movie.runtime} minutes</p>
           <p>Overview: {props.movie.movie.overview}</p>
           <div>
