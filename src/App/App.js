@@ -4,16 +4,17 @@ import Movies from '../Movies/Movies';
 import Movie from '../Movie/Movie';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      specificMovie: null,
+      specificMovie: [],
       isLoading: true,
       search: "",
-      error: null
+      error: null,
+      clicked: false
     };
   }
   
@@ -24,23 +25,23 @@ class App extends Component {
         this.setState({
           allMovies: data,
           includedMovies: data,
-          specificMovie: null,
+          clicked: false,
           isLoading: false
         }))
       .catch(error => this.setState({ error, isLoading: false}))
   }
-
+  singleMovieFetchCall = (id) => {
+    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}/`)
+    .then(response => response.json())
+    // .catch(error => this.setState({ error, isLoading: false}))
+  }
   individualMovieFetchCall = (id) => {
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}/`)
       .then(response => response.json())
       .then(data => 
-        this.setState({
-          allMovies: null,
-          specificMovie: data,
-          includedMovies: null,
-          isLoading: false
-        }))
-      .catch(error => this.setState({ error, isLoading: false}))
+        this.setState({specificMovie: data.movie})
+        )
+        .catch(error => this.setState({ error, isLoading: false}))
   }
 
   videoFetchCall = (id) => {
@@ -77,13 +78,11 @@ class App extends Component {
     if (sortInputValue === "highest") {
       this.setState({
         allMovies: { movies: data.movies.sort((a,b) => b.average_rating - a.average_rating )},
-        specificMovie: null,
         isLoading: false
       })
     } else {
       this.setState({
         allMovies: { movies: data.movies.sort((a,b) => a.average_rating - b.average_rating )},
-        specificMovie: null,
         isLoading: false
       })
     }
@@ -131,37 +130,64 @@ class App extends Component {
           }
         />
       );
-    } else if (!this.state.specificMovie) {
-      return (
-        <Route 
-          exact 
-          path='/' 
-          render={() => (
-            <div>
-              <Header searchForTitle={this.searchForTitle} sortMovies={this.sortMovies}/>
-              <Movies movies={this.state.allMovies} displaySingleMovie={this.displaySingleMovie}/>
-            </div>
-            )
-          }
-        /> 
-     );
-    } else if(this.state.specificMovie !== null) {
-      return (
-        <Route 
-          path='/:id'
-          render={({ match }) => {
+    } 
+    return (
+      <main>
+        <Switch>
+          <Route path='/:id'render={({ match }) => {
             const theId = parseInt(match.params.id)
+            const selectedMovie = this.state.allMovies.movies.find((movie) => movie.id === theId)
             return (
               <div> 
-                <Movie id={theId} movie={this.state.specificMovie} video={this.state.trailer} />
-                <Footer goBackToHome={this.goBackToHome}/>
+                  <Movie key={match.params.id} id={theId} movie={this.state.specificMovie} video={this.state.trailer} moreData={this.singleMovieFetchCall}/>
+                  <Footer goBackToHome={this.goBackToHome}/>
+                </div>
+              )
+            }
+          }
+          />
+          <Route path='/' render={() => (
+              <div>
+                <Header searchForTitle={this.searchForTitle} sortMovies={this.sortMovies}/>
+                <Movies movies={this.state.allMovies} displaySingleMovie={this.displaySingleMovie}/>
               </div>
-            )
-          }
-          }
-        />
-      );
-    };
+              )
+            }
+          /> 
+        </Switch>
+      </main>
+    )
+    // else if (!this.state.specificMovie) {
+    //   return (
+    //     <Route 
+    //       exact 
+    //       path='/' 
+    //       render={() => (
+    //         <div>
+    //           <Header searchForTitle={this.searchForTitle} sortMovies={this.sortMovies}/>
+    //           <Movies movies={this.state.allMovies} displaySingleMovie={this.displaySingleMovie}/>
+    //         </div>
+    //         )
+    //       }
+    //     /> 
+    //  );
+    // } else if(this.state.specificMovie !== null) {
+    //   return (
+    //     <Route 
+    //       path='/:id'
+    //       render={({ match }) => {
+    //         const theId = parseInt(match.params.id)
+    //         return (
+    //           <div> 
+    //             <Movie id={theId} movie={this.state.specificMovie} video={this.state.trailer} />
+    //             <Footer goBackToHome={this.goBackToHome}/>
+    //           </div>
+    //         )
+    //       }
+    //       }
+    //     />
+    //   );
+    // };
   };
 };
 
