@@ -5,10 +5,9 @@ import { Link } from 'react-router-dom'
 const Footer = (props) => {
   return (
     <footer >
-      <Link to={'/'}>
-         <img onClick={props.goBackToHome} className="footer-logo" src="https://i.ibb.co/8bGjmZw/Untitled-Artwork.png" alt="Rancid Tomatillo Logo"/>
+      <Link to={'/'} aria-label="Link to home page" onClick={props.goBackToHome} onKeyDown={(e)=> e.keyCode === 13 && props.goBackToHome}>
+         <img className="footer-logo" src="https://i.ibb.co/8bGjmZw/Untitled-Artwork.png" alt="Rancid Tomatillo Logo"/>
       </Link>
-      {/* <button onClick={props.goBackToHome}>Return to Main Page</button> */}
     </footer>
   );
 };
