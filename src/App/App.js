@@ -4,7 +4,7 @@ import Movies from '../Movies/Movies';
 import Movie from '../Movie/Movie';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import { Route, NavLink } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
 class App extends Component {
   constructor() {

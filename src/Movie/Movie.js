@@ -11,10 +11,10 @@ const Movie = (props) => {
   return (
     <div>
       <div className="backdrop-img-section">
-      <img className="backdrop-img"src={props.movie.movie.backdrop_path} />
+      <img className="backdrop-img"src={props.movie.movie.backdrop_path} alt={`Backdrop image for ${props.movie.movie.title}`} />
       </div>
       <div className="main">
-        <img className="movie-poster" src={props.movie.movie.poster_path}/>
+        <img className="movie-poster" src={props.movie.movie.poster_path} alt={`Movie poster for ${props.movie.movie.title}`}/>
         <section className="movie-details">
           <div>
             <h2>{props.movie.movie.title}</h2>
