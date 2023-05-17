@@ -1,7 +1,9 @@
 describe('App', () => {
   beforeEach(() => {
+    // cy.intercept('GET', 'https://rancid-tomatillos.herokuapp.com/api/v2/movies', )
     cy.visit('http://localhost:3000/')
   })
+
   it('Should display loading message while fetching movies', () => {
     cy.contains("Loading.....").should('be.visible')
   })

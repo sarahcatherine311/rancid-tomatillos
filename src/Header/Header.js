@@ -3,7 +3,7 @@ import "./Header.css";
 
 const Header = (props) => {
   return (
-    <header>
+    <header className="header">
       <div className="header-top">
         <img className="logo" src="https://i.ibb.co/8bGjmZw/Untitled-Artwork.png" alt="Rancid Tomatillo Logo"/>
       </div>
@@ -12,8 +12,8 @@ const Header = (props) => {
         <div>
           <label className="sort" for="ratings">Sort by Rating:  </label>
           <select className="sort" onChange={(e) => props.sortMovies()} id="ratings" name="ratings">
-            <option value="highest">High to Low</option>
-            <option value="lowest">Low to High</option>
+            <option id="highest" value="highest">High to Low</option>
+            <option id="lowest" value="lowest">Low to High</option>
           </select>
         </div>
       </div>
