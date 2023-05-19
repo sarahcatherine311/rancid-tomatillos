@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Footer.css";
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 const Footer = (props) => {
   return (
@@ -13,3 +14,7 @@ const Footer = (props) => {
 };
 
 export default Footer;
+
+Footer.propTypes = {
+  props: PropTypes.object
+};
