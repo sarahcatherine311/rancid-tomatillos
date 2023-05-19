@@ -1,7 +1,10 @@
 describe('Movies', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/')
-    cy.contains('Loading.....').should('not.exist')
+    cy.intercept("GET", "https://rancid-tomatillos.herokuapp.com/api/v2/movies", {
+      statusCode: 200,
+      fixture: './movies.json'
+    })
+    .visit('http://localhost:3000/')
   })
 
   it('should display movie posters', () => {

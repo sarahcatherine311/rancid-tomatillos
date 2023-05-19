@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 const Footer = (props) => {
   return (
-    <footer >
+    <footer className="footer" >
       <Link to={'/'} aria-label="Link to home page" onClick={props.goBackToHome} onKeyDown={(e)=> e.keyCode === 13 && props.goBackToHome}>
          <img className="footer-logo" src="https://i.ibb.co/8bGjmZw/Untitled-Artwork.png" alt="Rancid Tomatillo Logo"/>
       </Link>

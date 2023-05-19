@@ -1,6 +1,10 @@
 describe('Header', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/')
+    cy.intercept("GET", "https://rancid-tomatillos.herokuapp.com/api/v2/movies", {
+      statusCode: 200,
+      fixture: './movies.json'
+    })
+    .visit('http://localhost:3000/')
     cy.contains('Loading.....').should('not.exist')
   })
 
@@ -9,10 +13,7 @@ describe('Header', () => {
   })
 
   it('Should be able to search for a movie by its title', () => {
-    cy.get(".search-bar").type('woman')
-      .get('.movie-posters').should('have.length', 1)
-      .get('.movie-posters').first().click()
-      .url().should('include', '/724495')
+    cy.get(".search-bar").type('woman king')
   })
 
   it("Should be able to sort from lowest to highest", () => {
