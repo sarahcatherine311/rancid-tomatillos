@@ -30,42 +30,10 @@ class App extends Component {
         }))
       .catch(error => this.setState({ error, isLoading: false}))
   }
-  singleMovieFetchCall = (id) => {
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}/`)
-    .then(response => response.json())
-    // .catch(error => this.setState({ error, isLoading: false}))
-  }
-  individualMovieFetchCall = (id) => {
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}/`)
-      .then(response => response.json())
-      .then(data => 
-        this.setState({specificMovie: data.movie})
-        )
-        .catch(error => this.setState({ error, isLoading: false}))
-  }
-
-  videoFetchCall = (id) => {
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}/videos`)
-      .then(response => response.json())
-      .then(data => 
-        this.setState({
-          trailer: data.videos.find(video => video.type === "Trailer"),
-          isLoading: false
-        }))
-      .catch(error => this.setState({ error, isLoading: false}))
-  }
 
   componentDidMount = () => {
     this.moviesFetchCall()
   }
-
-  displaySingleMovie = (id) => {
-    this.individualMovieFetchCall(id)
-    this.videoFetchCall(id)
-    this.setState({
-      search: ''
-    })
-  };
   
   goBackToHome = () => {
     this.moviesFetchCall()
@@ -110,6 +78,7 @@ class App extends Component {
   }
   
   render() {
+    
     if (this.state.isLoading) {
       return <div>Loading.....</div>
     } 
@@ -124,7 +93,7 @@ class App extends Component {
           render={() => (
             <div>
               <Header searchForTitle={this.searchForTitle} sortMovies={this.sortMovies}/>
-              <Movies movies={this.state.includedMovies} displaySingleMovie={this.displaySingleMovie}/>
+              <Movies movies={this.state.includedMovies} />
             </div>
           )
           }
@@ -136,10 +105,9 @@ class App extends Component {
         <Switch>
           <Route path='/:id'render={({ match }) => {
             const theId = parseInt(match.params.id)
-            const selectedMovie = this.state.allMovies.movies.find((movie) => movie.id === theId)
             return (
               <div> 
-                  <Movie key={match.params.id} id={theId} movie={this.state.specificMovie} video={this.state.trailer} moreData={this.singleMovieFetchCall}/>
+                  <Movie key={theId} id={theId} />
                   <Footer goBackToHome={this.goBackToHome}/>
                 </div>
               )
@@ -149,7 +117,7 @@ class App extends Component {
           <Route path='/' render={() => (
               <div>
                 <Header searchForTitle={this.searchForTitle} sortMovies={this.sortMovies}/>
-                <Movies movies={this.state.allMovies} displaySingleMovie={this.displaySingleMovie}/>
+                <Movies movies={this.state.allMovies} />
               </div>
               )
             }
@@ -157,37 +125,6 @@ class App extends Component {
         </Switch>
       </main>
     )
-    // else if (!this.state.specificMovie) {
-    //   return (
-    //     <Route 
-    //       exact 
-    //       path='/' 
-    //       render={() => (
-    //         <div>
-    //           <Header searchForTitle={this.searchForTitle} sortMovies={this.sortMovies}/>
-    //           <Movies movies={this.state.allMovies} displaySingleMovie={this.displaySingleMovie}/>
-    //         </div>
-    //         )
-    //       }
-    //     /> 
-    //  );
-    // } else if(this.state.specificMovie !== null) {
-    //   return (
-    //     <Route 
-    //       path='/:id'
-    //       render={({ match }) => {
-    //         const theId = parseInt(match.params.id)
-    //         return (
-    //           <div> 
-    //             <Movie id={theId} movie={this.state.specificMovie} video={this.state.trailer} />
-    //             <Footer goBackToHome={this.goBackToHome}/>
-    //           </div>
-    //         )
-    //       }
-    //       }
-    //     />
-    //   );
-    // };
   };
 };
 
