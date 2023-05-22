@@ -23,7 +23,7 @@ We successfully implemented Router as well as a fully functionable search bar in
 
 ### Preview of App:
 
-![App Preview](https://imgflip.com/embed/7mmt2i)
+![App Preview]("https://imgflip.com/embed/7mmt2i")
 
 ### Context:
 
