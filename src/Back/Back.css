@@ -1,4 +1,6 @@
-.logo {
+.back-logo {
+  padding-left: 25px;
   height: 150px;
   cursor: pointer;
+  text-align: center;
 }
