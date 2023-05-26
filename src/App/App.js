@@ -3,7 +3,7 @@ import './App.css';
 import Movies from '../Movies/Movies';
 import Movie from '../Movie/Movie';
 import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
+import Back from '../Back/Back';
 import { Route, Switch } from 'react-router-dom'
 
 class App extends Component {
@@ -107,8 +107,8 @@ class App extends Component {
             const theId = parseInt(match.params.id)
             return (
               <div> 
+                  <Back goBackToHome={this.goBackToHome}/>
                   <Movie key={theId} id={theId} />
-                  <Footer goBackToHome={this.goBackToHome}/>
                 </div>
               )
             }
