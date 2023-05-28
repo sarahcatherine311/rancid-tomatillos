@@ -4,6 +4,14 @@ describe('Movies', () => {
       statusCode: 200,
       fixture: './movies.json'
     })
+    .intercept("GET", "https://rancid-tomatillos.herokuapp.com/api/v2/movies/436270", {
+      statusCode: 200,
+      fixture: './movie.json'
+    })
+    .intercept("GET", "https://rancid-tomatillos.herokuapp.com/api/v2/movies/436270/videos", {
+      statusCode: 200,
+      fixture: './trailer.json'
+    })
     .visit('http://localhost:3000/')
   })
 
@@ -13,7 +21,7 @@ describe('Movies', () => {
   it('Should display a list of movies', () => {
     cy.get('.movie-posters').should('have.length', 40)
   })
-  it("SHould be able to click a movie poster", () => {
+  it("Should be able to click a movie poster and navigate to a new page", () => {
     cy.get('.movie-posters').first().click();
     cy.url().should('include', '/436270')
   })
