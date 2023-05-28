@@ -1,0 +1,18 @@
+{
+  "movie": {
+  "id": 979924,
+  "title": "On the Line",
+  "poster_path": "https://image.tmdb.org/t/p/original//a14BbSHvLgzCdbDD6tAL8OBVKL1.jpg",
+  "backdrop_path": "https://image.tmdb.org/t/p/original//vTDsdu7RoaMQhvyL6073spQMjQW.jpg",
+  "release_date": "2022-10-31",
+  "overview": "A provocative and edgy radio host must play a dangerous game of cat and mouse with a mysterious caller who's kidnapped his family and is threatening to blow up the whole station.",
+  "genres": [
+  "Thriller"
+  ],
+  "budget": 0,
+  "revenue": 0,
+  "runtime": 104,
+  "tagline": "A dangerous game. Played live.",
+  "average_rating": 10
+  }
+  }
