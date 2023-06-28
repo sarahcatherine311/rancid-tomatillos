@@ -6,7 +6,7 @@ This is an interactive web-based application that was developed to make the user
 
 
 ### Feature Spotlight
-We successfully implemented REacy Router into our application
+We successfully implemented React Router into our application
 
 
 ### Installation Instructions:
