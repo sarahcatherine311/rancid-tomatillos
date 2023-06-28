@@ -70,4 +70,4 @@ Jacob:
 
 #### Challenges:
 
-- The biggest challenge we faced was refactoring code use Router rather than conditional rendering by the state.
+- The biggest challenge we faced was refactoring code using Router rather than conditional rendering by the state.
